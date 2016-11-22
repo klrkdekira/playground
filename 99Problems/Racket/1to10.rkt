@@ -38,3 +38,26 @@
       (reverse p)))
 (my-reverse "Hello, World!")
 (my-reverse '(a b c d e))
+
+(println "Problem 6")
+(define (palindrome? p)
+  (equal? p (if (string? p)
+                (list->string (reverse (string->list p)))
+                (reverse p))))
+
+(palindrome? '(1 2 3))
+(palindrome? "madamimadam")
+
+(println "Problem 7")
+(define (my-flatten orig-list)
+  (if (empty? orig-list)
+      null
+      (let ([elem (car orig-list)]
+            [rest-list (cdr orig-list)])
+        (if (list? elem)
+            (append (my-flatten elem) (my-flatten rest-list))
+            (append (cons elem null) (my-flatten rest-list))))))
+(my-flatten '(a (b (c d) e)))
+
+;; (println "Problem 8")
+;; (compress '(a a a a b c c a a d e e e e))
